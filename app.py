@@ -4,6 +4,29 @@ from streamlit_pdf_viewer import pdf_viewer
 from pypdf import PdfReader
 import zipfile
 import os
+import shutil
+import glob
+
+# ==========================================
+# CREATE TEMP DIRECTORY
+# ==========================================
+
+os.makedirs("temp", exist_ok=True)
+# ==========================================
+# CLEAN TEMP FILES
+# ==========================================
+
+def clean_temp_folder():
+
+    files = glob.glob("temp/*")
+
+    for file in files:
+
+        try:
+            os.remove(file)
+
+        except:
+            pass
 # ==========================================
 # IMPORT TOOLS
 # ==========================================
@@ -288,6 +311,7 @@ if selected == "Merge PDF":
     #     if uploaded_files:
 
     #         if st.button("Merge PDFs"):
+
     with col1:
 
         uploaded_files = st.file_uploader(
@@ -330,6 +354,7 @@ if selected == "Merge PDF":
             # ==========================================
 
             if st.button("Merge PDFs"):
+                clean_temp_folder()
 
                 output_path = "temp/merged.pdf"
 
@@ -406,6 +431,7 @@ elif selected == "Split PDF":
             if split_option == "Split All Pages":
 
                 if st.button("Split All Pages"):
+                    
 
                     files = split_all_pages(
                         uploaded_file
@@ -507,6 +533,7 @@ elif selected == "Compress PDF":
         if uploaded_file:
 
             if st.button("Compress PDF"):
+                clean_temp_folder()
 
                 input_path = "temp/input.pdf"
 
@@ -553,6 +580,7 @@ elif selected == "PDF to Word":
         if uploaded_file:
 
             if st.button("Convert to Word"):
+                clean_temp_folder()
 
                 output_docx = "temp/converted.docx"
 
@@ -590,6 +618,7 @@ elif selected == "Word to PDF":
     if uploaded_file:
 
         if st.button("Convert to PDF"):
+            clean_temp_folder()
 
             input_docx = "temp/input.docx"
 
@@ -654,6 +683,7 @@ elif selected == "Rotate PDF":
             if rotate_option == "Full PDF":
 
                 if st.button("Rotate Full PDF"):
+                    
 
                     output_path = rotate_full_pdf(
                         uploaded_file,
@@ -756,6 +786,7 @@ elif selected == "Watermark PDF":
         if uploaded_file:
 
             if st.button("Add Watermark"):
+                clean_temp_folder()
 
                 output_path = add_watermark(
                     uploaded_file,
@@ -852,6 +883,7 @@ elif selected == "Extract Images":
         if uploaded_file:
 
             if st.button("Extract Images"):
+                clean_temp_folder()
 
                 images = extract_images_from_pdf(
                     uploaded_file
@@ -939,6 +971,7 @@ elif selected == "Protect PDF":
         if uploaded_file:
 
             if st.button("Protect PDF"):
+                clean_temp_folder()
 
                 output_path = protect_pdf(
                     uploaded_file,
@@ -979,6 +1012,7 @@ elif selected == "Unlock PDF":
     if uploaded_file:
 
         if st.button("Unlock PDF"):
+            clean_temp_folder()
 
             output_path = unlock_pdf(
                 uploaded_file,
@@ -1044,6 +1078,7 @@ elif selected == "Edit PDF":
             )
 
             if st.button("Add Text"):
+                clean_temp_folder()
 
                 output_path = add_text_to_pdf(
                     uploaded_file,
