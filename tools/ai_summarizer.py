@@ -1,8 +1,17 @@
 import fitz
+import nltk
+
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 
+
+# ==========================================
+# DOWNLOAD NLTK DATA
+# ==========================================
+
+nltk.download('punkt')
+nltk.download('punkt_tab')
 # ==========================================
 # EXTRACT PDF TEXT
 # ==========================================
