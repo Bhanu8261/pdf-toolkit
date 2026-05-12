@@ -6,6 +6,7 @@ import zipfile
 import os
 import shutil
 import glob
+from tools.ai_summarizer import summarize_pdf
 
 # ==========================================
 # CREATE TEMP DIRECTORY
@@ -266,6 +267,7 @@ with st.sidebar:
             "Protect PDF",
             "Unlock PDF",
             "Edit PDF"
+            "AI Summarizer"
 
         ],
 
@@ -284,6 +286,7 @@ with st.sidebar:
             "lock",
             "unlock",
             "pencil"
+            "robot"
 
         ],
 
@@ -1102,6 +1105,58 @@ elif selected == "Edit PDF":
             show_pdf_preview(uploaded_file)# ==========================================
 # FOOTER
 # ==========================================
+# ==========================================
+# AI SUMMARIZER
+# ==========================================
+
+elif selected == "AI Summarizer":
+
+    st.header("🤖 AI PDF Summarizer")
+
+    col1, col2 = st.columns([1,1])
+
+    with col1:
+
+        uploaded_file = st.file_uploader(
+            "Upload PDF",
+            type=["pdf"]
+        )
+
+        if uploaded_file:
+
+            st.info(
+                "Best for text-based PDFs under 20 pages"
+            )
+
+            if st.button("Generate Summary"):
+
+                clean_temp_folder()
+
+                with st.spinner("Generating AI summary..."):
+
+                    summary = summarize_pdf(
+                        uploaded_file
+                    )
+
+                st.success("Summary Generated!")
+
+                st.subheader("📄 AI Summary")
+
+                st.write(summary)
+
+                st.download_button(
+                    "⬇ Download Summary",
+                    data=summary,
+                    file_name="summary.txt",
+                    mime="text/plain",
+                    key="download_summary"
+                )
+
+    with col2:
+
+        if uploaded_file:
+
+            show_pdf_preview(uploaded_file)
 
 st.markdown("---")
 st.caption("🚀 Built with Streamlit | PDF Toolkit")

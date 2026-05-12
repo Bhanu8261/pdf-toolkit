@@ -9,3 +9,6 @@ pymupdf
 pillow 
 # pytesseract 
 reportlab
+transformers
+torch
+sentencepiece
