@@ -6,14 +6,13 @@ import fitz
 # ==========================================
 
 summarizer = pipeline(
-    "summarization",
+    task="summarization",
     model="sshleifer/distilbart-cnn-12-6"
 )
 
 # ==========================================
 # EXTRACT PDF TEXT
 # ==========================================
-
 
 def extract_pdf_text(uploaded_file):
 
@@ -37,22 +36,25 @@ def extract_pdf_text(uploaded_file):
     return text
 
 # ==========================================
-# SUMMARIZE TEXT
+# SUMMARIZE PDF
 # ==========================================
-
 
 def summarize_pdf(uploaded_file):
 
     text = extract_pdf_text(uploaded_file)
 
-    # Limit text for free memory
+    # LIMIT TEXT SIZE
     text = text[:4000]
 
     summary = summarizer(
+
         text,
+
         max_length=200,
         min_length=50,
+
         do_sample=False
+
     )
 
-    return summary[0]['summary_text']
+    return summary[0]["summary_text"]
