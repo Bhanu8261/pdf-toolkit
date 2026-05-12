@@ -25,7 +25,7 @@ from tools.rotate_pdf import (
     rotate_page_range
 )
 from tools.watermark_pdf import add_watermark
-from tools.ocr_pdf import extract_text_from_pdf
+# from tools.ocr_pdf import extract_text_from_pdf
 from tools.extract_images import extract_images_from_pdf
 from tools.protect_pdf import protect_pdf
 from tools.unlock_pdf import unlock_pdf
@@ -238,7 +238,7 @@ with st.sidebar:
 
             "Rotate PDF",
             "Watermark PDF",
-            "OCR PDF",
+            # "OCR PDF",
             "Extract Images",
             "Protect PDF",
             "Unlock PDF",
@@ -256,7 +256,7 @@ with st.sidebar:
 
             "arrow-repeat",
             "droplet",
-            "file-text",
+            # "file-text",
             "images",
             "lock",
             "unlock",
@@ -811,28 +811,28 @@ elif selected == "Watermark PDF":
 #         if uploaded_file:
 #             show_pdf_preview(uploaded_file)
 
-elif selected == "OCR PDF":
+# elif selected == "OCR PDF":
 
-    st.header("📝 OCR PDF")
+#     st.header("📝 OCR PDF")
 
-    st.info("🚧 OCR feature is coming soon.")
+#     st.info("🚧 OCR feature is coming soon.")
 
-    st.warning(
-        """
-       COMING SOON⛷️⛷️
-        """
-    )
+#     st.warning(
+#         """
+#        COMING SOON⛷️⛷️
+#         """
+#     )
 
-    uploaded_file = st.file_uploader(
-        "Upload PDF",
-        type=["pdf"],
-        disabled=True
-    )
+#     uploaded_file = st.file_uploader(
+#         "Upload PDF",
+#         type=["pdf"],
+#         disabled=True
+#     )
 
-    st.button(
-        "Extract Text",
-        disabled=True
-    )# ==========================================
+#     st.button(
+#         "Extract Text",
+#         disabled=True
+#     )# ==========================================
 # EXTRACT IMAGES
 # ==========================================
 
