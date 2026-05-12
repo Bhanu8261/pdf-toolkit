@@ -266,7 +266,7 @@ with st.sidebar:
             "Extract Images",
             "Protect PDF",
             "Unlock PDF",
-            "Edit PDF"
+            "Edit PDF",
             "AI Summarizer"
 
         ],
@@ -285,7 +285,7 @@ with st.sidebar:
             "images",
             "lock",
             "unlock",
-            "pencil"
+            "pencil",
             "robot"
 
         ],
