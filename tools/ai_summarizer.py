@@ -1,14 +1,7 @@
-from transformers import pipeline
 import fitz
-
-# ==========================================
-# LOAD MODEL
-# ==========================================
-
-summarizer = pipeline(
-    task="summarization",
-    model="sshleifer/distilbart-cnn-12-6"
-)
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lsa import LsaSummarizer
 
 # ==========================================
 # EXTRACT PDF TEXT
@@ -43,18 +36,22 @@ def summarize_pdf(uploaded_file):
 
     text = extract_pdf_text(uploaded_file)
 
-    # LIMIT TEXT SIZE
-    text = text[:4000]
-
-    summary = summarizer(
-
+    parser = PlaintextParser.from_string(
         text,
-
-        max_length=200,
-        min_length=50,
-
-        do_sample=False
-
+        Tokenizer("english")
     )
 
-    return summary[0]["summary_text"]
+    summarizer = LsaSummarizer()
+
+    summary = summarizer(
+        parser.document,
+        5
+    )
+
+    final_summary = ""
+
+    for sentence in summary:
+
+        final_summary += str(sentence) + " "
+
+    return final_summary
