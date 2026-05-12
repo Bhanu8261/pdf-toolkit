@@ -1,0 +1,11 @@
+streamlit
+pypdf
+pdf2docx
+docx2pdf
+PyMuPDF
+streamlit-option-menu
+streamlit-pdf-viewer
+pymupdf 
+pillow 
+# pytesseract 
+reportlab
